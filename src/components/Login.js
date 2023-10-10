@@ -1,6 +1,6 @@
 import React from "react";
 
-const Login=({newUser,handleChange,logNewUser})=>{
+const Login=({newUser,setNewUser,logNewUser})=>{
     return(
         <div className="card w-100 text-center border-white">
         <div className="row">
@@ -16,7 +16,7 @@ const Login=({newUser,handleChange,logNewUser})=>{
               className="form-control mb-3"
               placeholder="Username"
               autoComplete="off"
-              onChange={(e)=>handleChange(e)}
+            onChange={(e)=>setNewUser(e.target.value)}
               onKeyPress={(e)=>(e.code === "Enter" ? logNewUser():null)}
             />
             <button className="btn btn-success w-100" onClick={()=>logNewUser()}>Join!</button>

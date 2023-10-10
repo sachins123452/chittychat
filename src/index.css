@@ -48,3 +48,39 @@ code {
   position: sticky;
   bottom: 0;
 }
+
+.border-right-info{
+  border-right: #0dcaf0 solid;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.online{
+  background-color: #4cd137;
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  height: 20px;
+  width: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+.offline{
+  background-color: #ce1515;
+  position: absolute;
+  bottom: 0;
+  left: 40px;
+  height: 20px;
+  width: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+
+.new-message-alert{
+  background-color: #3746d1;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+}
