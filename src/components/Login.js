@@ -16,8 +16,8 @@ const Login=({newUser,setNewUser,logNewUser})=>{
               className="form-control mb-3"
               placeholder="Username"
               autoComplete="off"
-            onChange={(e)=>setNewUser(e.target.value)}
-              onKeyPress={(e)=>(e.code === "Enter" ? logNewUser():null)}
+            onChange={({currentTarget:input})=>setNewUser(input.value)}
+              onKeyDown={(e)=>(e.code === "Enter" ? logNewUser():null)}
             />
             <button className="btn btn-success w-100" onClick={()=>logNewUser()}>Join!</button>
             </div>

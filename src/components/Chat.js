@@ -7,7 +7,7 @@ const Chat = ({ user, messages, setMessages, socket, users, setUsers }) => {
   const [message, setMessage] = useState("");
   const [selectedUser, setSelectedUser] = useState({});
 
-  // const currentSelectedUser = useRef({});
+  const currentSelectedUser = useRef({});
 
   const findUser = useCallback(
     (userId) => {
@@ -62,8 +62,8 @@ const Chat = ({ user, messages, setMessages, socket, users, setUsers }) => {
   );
   const privateMessage = useCallback(
     ({ content, to, from }) => {
-      if (selectedUser.userId) {
-        if (selectedUser.userId === from) {
+      if (currentSelectedUser.current.userId) {
+        if (currentSelectedUser.current.userId === from) {
           const newMessage = {
             userId: from,
             message: content,
@@ -95,7 +95,7 @@ const Chat = ({ user, messages, setMessages, socket, users, setUsers }) => {
     socket.on("user disconnected", (user) => userDisconnected(user));
     socket.on("private message", (message) => privateMessage(message));
      socket.on("user messages", (messages) => userMessages(messages));
-  }, [socket, userConnected, userDisconnected, privateMessage]);
+  }, [socket, userConnected, userDisconnected, privateMessage,userMessages]);
 
   const sendMessage = () => {
     socket.emit("private message", {
@@ -103,7 +103,6 @@ const Chat = ({ user, messages, setMessages, socket, users, setUsers }) => {
       to: selectedUser.userId,
     });
     const newMessage = {
-      type: "message",
       userId: user.userId,
       username: user.username,
       message,
@@ -116,7 +115,7 @@ const Chat = ({ user, messages, setMessages, socket, users, setUsers }) => {
     setMessages([]);
     handleNewMessageStatus(user.userId, false);
     socket.emit("user messages", user);
-    // currentSelectedUser.current = user;
+    currentSelectedUser.current = user;
   };
 
   return (
